@@ -5,6 +5,7 @@ Computer-Graphics/
 │   ├── Triangle Program/
 │   │   ├── TriangleReflection.java/
 │   │   ├── TriangleRotation.java/
+│   │   ├── TriangleScaling.java/
 - BresenhamLine.java
 - CircleDraw.java
 - DDALine.java

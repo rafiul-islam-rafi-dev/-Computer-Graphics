@@ -7,6 +7,7 @@ Computer-Graphics/
 │   │   ├── TriangleRotation.java/
 │   │   ├── TriangleScaling.java/
 │   │   ├── TriangleShear.java/
+│   │   ├── TriangleTranslation.java/
 - BresenhamLine.java
 - CircleDraw.java
 - DDALine.java

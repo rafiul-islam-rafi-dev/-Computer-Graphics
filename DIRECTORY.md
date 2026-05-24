@@ -9,8 +9,8 @@ Computer-Graphics/
 │   │   ├── TriangleShear.java/
 │   │   ├── TriangleTranslation.java/
 │   ├── BresenhamLine.java
+│   ├── CircleDraw.java
 
-- BresenhamLine.java
 - CircleDraw.java
 - DDALine.java
 - FlagDraw.java

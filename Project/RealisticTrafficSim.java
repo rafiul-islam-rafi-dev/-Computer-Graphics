@@ -268,27 +268,31 @@ public class RealisticTrafficSim extends JPanel implements ActionListener {
 
         // --- NS Direction Logic ---
         int speedNS = (phase == 0) ? 6 : (phase == 1 ? 3 : 0);
-        if (phase >= 2) { // Clearing Intersection
-            if (nsCarY > 170 && nsCarY < 400) speedNS = 6;
-            if (snCarY < 380 && snCarY > 200) speedNS = 6;
+        int speedSN = (phase == 0) ? 6 : (phase == 1 ? 3 : 0);
+        if (phase >= 2) { // Red: stop before line, clear after it
+            if (nsCarY > 170) speedNS = 6;
+            if (snCarY < 380) speedSN = 6;
         }
-        if (personOnNS && ((nsCarY < 230 && nsCarY > 100) || (snCarY > 350 && snCarY < 500))) speedNS = 0;
+        if (personOnNS && nsCarY > 100 && nsCarY <= 170) speedNS = 0;
+        if (personOnNS && snCarY < 500 && snCarY >= 380) speedSN = 0;
         if (phase >= 2 && nsCarY <= 170) speedNS = 0;
-        if (phase >= 2 && snCarY >= 380) speedNS = 0;
+        if (phase >= 2 && snCarY >= 380) speedSN = 0;
 
-        nsCarY += speedNS; snCarY -= speedNS;
+        nsCarY += speedNS; snCarY -= speedSN;
 
         // --- EW Direction Logic ---
         int speedEW = (phase == 2) ? 6 : (phase == 3 ? 3 : 0);
-        if (phase <= 1) { // Clearing Intersection
-            if (ewCarX > 275 && ewCarX < 500) speedEW = 6;
-            if (weCarX < 475 && weCarX > 300) speedEW = 6;
+        int speedWE = (phase == 2) ? 6 : (phase == 3 ? 3 : 0);
+        if (phase <= 1) { // Red: stop before line, clear after it
+            if (ewCarX > 275) speedEW = 6;
+            if (weCarX < 475) speedWE = 6;
         }
-        if (personOnEW && ((ewCarX < 330 && ewCarX > 150) || (weCarX > 450 && weCarX < 650))) speedEW = 0;
+        if (personOnEW && ewCarX > 150 && ewCarX <= 275) speedEW = 0;
+        if (personOnEW && weCarX < 650 && weCarX >= 475) speedWE = 0;
         if (phase <= 1 && ewCarX <= 275) speedEW = 0;
-        if (phase <= 1 && weCarX >= 475) speedEW = 0;
+        if (phase <= 1 && weCarX >= 475) speedWE = 0;
 
-        ewCarX += speedEW; weCarX -= speedEW;
+        ewCarX += speedEW; weCarX -= speedWE;
 
         // Drawing Cars
         drawCarVertical(g, 380, nsCarY, new Color(50, 110, 220), true);
